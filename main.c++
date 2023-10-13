@@ -2,35 +2,49 @@
 #include <vector>
 #include <string>
 #include <array>
-#include "funcoesLivro.c++"
-#include "funcoesUsuario.c++"
+
 
 using namespace std;
 
-class ListaLivrosEmprestimos
+class Biblioteca
 {
-
 private:
-    vector<string> UsuarioList;
-    string *Emprestimos;
-    string DataEmprestimo;
+    
 public:
-    string livros;
-    vector<class> LivrosList;
-
+    
 };
-
 class Livros
 {
 private:
-    string codigo;
+    //static int contadorLivros;
 public:
-     int contadorLivros = 1;
-     string titulo;
-     string autor;
-     int numeroCopias;
+    string codigo;
+    string titulo;
+    string autor;
+    int numeroCopias;
+    //void cadastrarLivro();
 };
 
+
+/*void Livros::cadastrarLivro(){
+contadorLivros++;
+string codigo,titulo,autor;
+int numeroCopias;
+
+    cout << "Informe o título do livro: ";
+    cin >> titulo;
+    cout << "Informe o autor do livro: ";
+    cin >> autor;
+    cout << "Informe o número de cópias disponiveis: ";
+    cin >> numeroCopias;
+    
+    Livros livro;
+    livro.titulo = titulo;
+    livro.autor = autor;
+    livro.numeroCopias = numeroCopias;
+    livro.codigo = "123";
+
+};*/
 class Usuario
 {
 private:
@@ -40,10 +54,55 @@ public:
     int contadorUsuarios = 1;
 };
 
- 
+void cadastrarLivro(vector<Livros> &Lista){
+
+string codigo_,titulo_,autor_;
+int numeroCopias_;
+
+    cout << "Informe o título do livro: ";
+    cin >> titulo_;
+    cout << "Informe o autor do livro: ";
+    cin >> autor_;
+    cout << "Informe o número de cópias disponiveis: ";
+    cin >> numeroCopias_;
+    
+    Livros livro;
+    livro.titulo = titulo_;
+    livro.autor = autor_;
+    livro.numeroCopias = numeroCopias_;
+    livro.codigo = "123";
+
+    Lista.push_back(livro);
+    cout << Lista.size() << endl;
+    cout <<Lista[0].titulo;
+    
+    
+};
 
 int main(){
+vector<Livros> LivrosList;
+/*
+string codigo,titulo,autor;
+int numeroCopias;
 
-cadastrarLivro();
+    cout << "Informe o título do livro: ";
+    cin >> titulo;
+    cout << "Informe o autor do livro: ";
+    cin >> autor;
+    cout << "Informe o número de cópias disponiveis: ";
+    cin >> numeroCopias;
+    
+    Livros livro;
+    livro.titulo = titulo;
+    livro.autor = autor;
+    livro.numeroCopias = numeroCopias;
+    livro.codigo = "123";
+*/
+    cadastrarLivro(LivrosList);
+    cout << LivrosList.size();
+    cout << LivrosList[0].autor;
+    
+    
+    
 
-}
+};
