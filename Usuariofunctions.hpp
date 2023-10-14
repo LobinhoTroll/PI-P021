@@ -4,6 +4,15 @@
 #include <string>
 #include <vector>
 
+using namespace std;
 
+class Usuario
+{
+private:
+    string nome;
+    string cpf;
+public:
+    int contadorUsuarios = 1;
+};
 
 #endif

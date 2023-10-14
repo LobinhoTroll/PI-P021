@@ -13,16 +13,6 @@ public:
     
 };
 
-class Usuario
-{
-private:
-    string nome;
-    string cpf;
-public:
-    int contadorUsuarios = 1;
-};
-
-
 int main(){
 vector<Livro> LivrosList;
 
