@@ -13,10 +13,12 @@ private:
     string titulo;
     string autor;
     int numeroCopias;
+    int numeroEmprestimos; 
 public:
     static void setLivrosinfo(string codigo,string titulo,string autor,int numeroCopias,vector<Livro> &Lista);
     static void getLivrosinfo();
     static void mostrarLista(vector<Livro> Lista);
+    static void mostrarLivro(vector<Livro> Lista,int posicao);
 };
 
 string codigo_,titulo_,autor_;
@@ -49,6 +51,14 @@ void Livro::mostrarLista(vector<Livro> Lista){
 for (int i = 0; i < Lista.size(); i++){
     cout << i+1 << ". " << Lista[i].titulo << endl;
     }
+}
+
+void Livro::mostrarLivro(vector<Livro> Lista,int posicao){
+
+    cout << "Títuo: " << Lista[posicao].titulo << endl;
+    cout << "Autor: " << Lista[posicao].autor << endl;
+    cout << "Numero de copias na biblioteca: " << Lista[posicao].numeroCopias << endl;
+    cout << "codigo : " << Lista[posicao].codigo << endl;
 }
 
 #endif

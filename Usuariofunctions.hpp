@@ -12,7 +12,18 @@ private:
     string nome;
     string cpf;
 public:
-    int contadorUsuarios = 1;
+    static void getUserinfo();
 };
+
+string nome_,cpf_;
+
+void Usuario::getUserinfo(){
+
+    cout << "Informe o título do livro: ";
+    cin >> nome_;
+    cout << "Informe o autor do livro: ";
+    cin >> cpf_;
+
+}
 
 #endif
