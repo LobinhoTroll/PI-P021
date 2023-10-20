@@ -52,7 +52,6 @@ private:
     string nome;
     string cpf;
     int id;
-    vector<Livro> emprestimos;
 public:
     //gets
     string getNome();
@@ -62,8 +61,13 @@ public:
     void setNomeUsuario(string nome);
     void setCpfUsuario(string cpf);
     //outras funções
-    
+    Usuario(string nome, string cpf, int id);
 };
+Usuario::Usuario(string nome, string cpf, int id) {
+    this->nome = nome;
+    this->cpf = cpf;
+    this->id = rand() % 1001;
+}
 string Usuario::getNome(){
     return nome;
 }
@@ -139,22 +143,21 @@ void Biblioteca::cadastrarUsuario() {
         {
             cout << "Informe o novo cpf:";
             cin >> nome;
-            ListaUsuarios[indiceUsuario].setNomeUsuario(cpf);
+            ListaUsuarios[indiceUsuario].setCpfUsuario(cpf);
         }
-        cout << "\nNúmero de cópias atualizado com sucesso!\n";
+        cout << "\nIformações do usuario atualizadas com sucesso!\n";
     } else {
         // Livro não encontrado, cadastra um novo livro
-        cout << "\nInforme o título do livro: ";
+        cout << "\nInforme o nome do usuario: ";
         cin.ignore();
-        getline(cin, titulo);
-        cout << "Informe o nome do autor do livro: ";
-        getline(cin, autor);
-        cout << "Informe o número de cópias disponíveis: ";
-        cin >> numeroCopias;
+        getline(cin, nome);
+        cout << "Informe o cpf do usuario: ";
+        getline(cin, cpf);
+        id = rand() % 1001;
 
-        Livro novoLivro(titulo, autor, numeroCopias);
-        ListaLivros.push_back(novoLivro);
-        cout << "\nLivro cadastrado com sucesso!\n";
+        Usuario novoUsuario(nome, cpf, id);
+        ListaUsuarios.push_back(novoUsuario);
+        cout << "\nUsuario cadastrado com sucesso!\n";
     }
 }
 
