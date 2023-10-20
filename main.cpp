@@ -46,16 +46,117 @@ void Livro::setNumeroCopias(int copias) {
     numeroCopias = copias;
 }
 
+class Usuario
+{
+private:
+    string nome;
+    string cpf;
+    int id;
+    vector<Livro> emprestimos;
+public:
+    //gets
+    string getNome();
+    string getCpf();
+    int getId();
+    //sets
+    void setNomeUsuario(string nome);
+    void setCpfUsuario(string cpf);
+    //outras funções
+    
+};
+string Usuario::getNome(){
+    return nome;
+}
+string Usuario::getCpf(){
+    return cpf;
+}
+int Usuario::getId(){
+    return id;
+};
+void Usuario::setNomeUsuario(string nome_){
+    nome = nome_;
+};
+void Usuario::setCpfUsuario(string cpf_){
+    nome = cpf_;
+};
+
+
 class Biblioteca {
 private:
     vector<Livro> ListaLivros;
-
+    vector<Usuario> ListaUsuarios;
 public:
     void cadastrarLivro();
+    void cadastrarUsuario();
+    int localizarUsuarioPorId(int id);
     void mostrarLista() const;
     void exibirInformacaoLivro(int index) const;
     int localizarLivroPorId(int id);
+    void listarEmprestimosDoUsuario(vector<Livro> emprestimos);
 };
+int Biblioteca::localizarUsuarioPorId(int id){
+    for (int i = 0; i < ListaUsuarios.size(); ++i) {
+        if (ListaUsuarios[i].getId() == id) {
+            return i; // Retorna o índice do livro encontrado na lista
+        }
+    }
+    return -1; // Retorna -1 se o livro com o ID especificado não for encontrado
+}
+
+void Biblioteca::listarEmprestimosDoUsuario(vector<Livro> emprestimos){
+    int index = 1;
+    for (const auto& livro : emprestimos) {
+        cout << index << ". Código: " << livro.getCodigo() << " | Título: " << livro.getTitulo() << endl;
+        index++;
+    }
+}
+
+// Função para cadastrar ou atualizar as informações de um usuario
+void Biblioteca::cadastrarUsuario() {
+    string nome, cpf;
+    char confirm;
+    int id;
+
+    cout << "\nInforme o ID do usuario: ";
+    cin >> id;
+
+    // Verifica se o usuario já existe na lista
+    int indiceUsuario = localizarUsuarioPorId(id);
+    if (indiceUsuario != -1) {
+        // Livro encontrado, pede para atualizar o número de cópias
+        cout << "O usuario já está cadastrado na biblioteca. Informe o as informações que deseja atualizar: ";
+        cout << "Deseja alterar o nome? S/N" << endl;
+        cin >> confirm;
+        if (confirm == 'S'||confirm == 's')
+        {
+            cout << "Informe o novo nome:";
+            cin >> nome;
+            ListaUsuarios[indiceUsuario].setNomeUsuario(nome);
+        }
+        cout << "Deseja alterar o cpf? S/N" << endl;
+        cin >> confirm;
+        if (confirm == 'S'||confirm == 's')
+        {
+            cout << "Informe o novo cpf:";
+            cin >> nome;
+            ListaUsuarios[indiceUsuario].setNomeUsuario(cpf);
+        }
+        cout << "\nNúmero de cópias atualizado com sucesso!\n";
+    } else {
+        // Livro não encontrado, cadastra um novo livro
+        cout << "\nInforme o título do livro: ";
+        cin.ignore();
+        getline(cin, titulo);
+        cout << "Informe o nome do autor do livro: ";
+        getline(cin, autor);
+        cout << "Informe o número de cópias disponíveis: ";
+        cin >> numeroCopias;
+
+        Livro novoLivro(titulo, autor, numeroCopias);
+        ListaLivros.push_back(novoLivro);
+        cout << "\nLivro cadastrado com sucesso!\n";
+    }
+}
 
 // Função para localizar um livro por ID na lista
 int Biblioteca::localizarLivroPorId(int id) {
